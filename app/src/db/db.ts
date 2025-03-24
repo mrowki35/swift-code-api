@@ -16,7 +16,7 @@ const pool = new Pool({
 export const connectToDb = async (): Promise<PoolClient> => {
   try {
     const client = await pool.connect();
-    console.debug("Connected to PostgreSQL with connection pooling");
+    console.debug("Connected to PostgreSQL");
     return client;
   } catch (err) {
     console.error(`Error connecting to PostgreSQL: ${err}`);
