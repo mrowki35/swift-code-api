@@ -33,7 +33,7 @@ describe("executeQuery", () => {
 
         (mockClient.query as jest.Mock).mockRejectedValueOnce(new Error(errorMessage));
 
-        await expect(executeQuery(Promise.resolve(mockClient), sql, params)).rejects.toThrow(errorMessage);
+        await expect(executeQuery(await Promise.resolve(mockClient), sql, params)).rejects.toThrow(errorMessage);
         expect(mockClient.query).toHaveBeenCalledWith(sql, params);
     });
 
@@ -46,7 +46,8 @@ describe("executeQuery", () => {
 
         (mockClient.query as jest.Mock).mockResolvedValueOnce({ rows: mockResult });
         
-        const result = await executeQuery(Promise.resolve(mockClient), sql, params);
+        const result = await executeQuery(await Promise.resolve(mockClient), sql, params);
+
         expect(result).toEqual(mockResult); 
         expect(mockClient.query).toHaveBeenCalledWith(sql, params); 
 });

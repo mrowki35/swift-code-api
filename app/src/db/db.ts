@@ -32,10 +32,10 @@ export const closeDbPool = async () => {
 
 export default pool;
 
-export const executeQuery = async (conn: Promise<PoolClient>, sql: string, params: any[]): Promise<any[]> => {
+export const executeQuery = async (conn: PoolClient, sql: string, params: any[]): Promise<any[]> => {
   try {
-    const client = await conn; 
-    const { rows } = await client.query(sql, params);
+ 
+    const { rows } = await conn.query(sql, params);
     return rows;
   } catch (err) {
     console.error(`executeQuery Error: ${err}`);
