@@ -1,0 +1,1 @@
+export const swift_codes_query = "SELECT * FROM swift_codes WHERE swift_code = $1";
