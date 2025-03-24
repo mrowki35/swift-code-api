@@ -8,22 +8,22 @@ swift_code_router.get(
     "/swift-codes/:swiftCode",
     async (req: Request, res: Response): Promise<void> => {
       const swiftCode = req.params.swiftCode;
+        let conn: any = null;
   
       try {
-        const result = await executeQuery(connectToDb(),  swift_codes_query , [swiftCode]); 
-  
-        if (result.length === 0) {
-          res.status(404).json({ message: "Swift code not found" });
-          return;
-        }
+        conn = await connectToDb();
+        const result = await executeQuery(conn,  swift_codes_query , [swiftCode]); 
+        //const branches = await 
+     
   
         res.json(result[0]);
       } catch (error) {
-        console.error("Error fetching SWIFT code:", error);
-        res.status(500).json({ message: "Internal Server Error" });
-      }
-    }
+        res.status(500).json({ error: "Failed to connect to DB"});
+      } 
+    
+  }
   );
+
   
 
 export default swift_code_router;
