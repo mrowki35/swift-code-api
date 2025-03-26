@@ -1,4 +1,5 @@
-export class SwiftCodeResponse {
+export class HeadquarterResponse {
+  [key: string]: any; 
     constructor(
       public address: string, 
       public bankName: string, 
