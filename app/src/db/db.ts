@@ -39,10 +39,6 @@ export const executeQuery = async (conn: PoolClient, sql: string, params: any[])
   } catch (err) {
     console.error(`executeQuery Error: ${err}`);
     throw err;
-  } finally {
-    if (conn) {
-      conn.release(); 
-      console.debug(`DB connection released back to pool`);
-    }
-  }
+  } 
+  
 };
