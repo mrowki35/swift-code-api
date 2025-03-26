@@ -3,6 +3,6 @@ export class BanksByCountryResponse {
       constructor(
         public countryISO2: string, 
         public countryName: string, 
-        public headquarters: string[],
+        public swiftCodes: string[],
       ) {}
     }
