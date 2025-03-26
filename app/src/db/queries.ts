@@ -20,3 +20,11 @@ export const branches_swift_codes_query = `SELECT address,
                             FROM swift_data 
                             WHERE SUBSTRING(swift_code FROM 1 FOR 8) = SUBSTRING($1 FROM 1 FOR 8)`;
 
+export const  banks_by_country_query = 
+`SELECT address, name as bankName, country_iso2_code as countryISO2, 
+    CASE 
+    WHEN swift_code LIKE '%XXX' THEN 1 
+    ELSE 0 
+    END AS isHeadquarter, swift_code FROM swift_data 
+    WHERE country_iso2_code = $1 `;
+
