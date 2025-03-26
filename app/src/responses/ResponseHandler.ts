@@ -1,26 +1,18 @@
 import { Response } from "express";
+import { isCryptoKey } from "util/types";
 
+// Keep T generic, but add constraint to handle objects or instances that can use Object.values()
 export function handleResponse<T>(
-    res: Response, 
-    endpoint_name: string, 
-    item: T, 
-    isEmptyPred: boolean
+  res: Response,
+  endpoint_name: string, 
+  item: T,
+  isEmptyPred: boolean,
 ): void {
-    if (isEmptyPred) {
-        res.status(204).send();
-    } else {
-        res.status(200).json({[endpoint_name.startsWith("/") ? endpoint_name.slice(1) : endpoint_name] : toLowerCaseKeys(item)});
-    }
-}
 
-function toLowerCaseKeys(obj: any): any {
-    if (Array.isArray(obj)) {
-        return obj.map(item => toLowerCaseKeys(item));
-    } else if (typeof obj === "object" && obj !== null) {
-        return Object.keys(obj).reduce((acc, key) => {
-            acc[key.toLowerCase()] = toLowerCaseKeys(obj[key]);
-            return acc;
-        }, {} as Record<string, any>);
-    }
-    return obj;
+  if (isEmptyPred) {
+    res.status(204).send();
+  } else {
+    // Send a 200 status with the values of 'item' directly (not wrapped in 'item' key)
+    res.status(200).json(item);  // Assuming item is an object or array-like
   }
+}
