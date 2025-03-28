@@ -2,9 +2,7 @@ import request from "supertest";
 import express from "express";
 import banks_by_country_router from "../src/routers/banks_by_country_router";
 import db, { connectToDb, executeQuery, closeDbPool } from "../src/db/db";
-import { handleResponse } from "../src/responses/ResponseHandler";
-import { isEmptyIdResponsePredicate } from "../src/validators/Predicate";
-import { BanksByCountryResponse } from "../src/responses/BanksByCountryResponse";
+
 
 jest.mock("../src/db/db", () => ({
   connectToDb: jest.fn(),
