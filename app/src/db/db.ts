@@ -45,3 +45,18 @@ export const executeQuery = async (
     throw err;
   }
 };
+
+
+export const executeDeleteQuery = async (
+  conn: PoolClient,
+  sql: string,
+  params: any[],
+): Promise<any> => {  
+  try {
+    const result = await conn.query(sql, params);
+    return result; 
+  } catch (err) {
+    console.error(`executeQuery Error: ${err}`);
+    throw err;
+  }
+};
