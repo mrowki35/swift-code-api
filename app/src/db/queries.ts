@@ -33,3 +33,8 @@ export const country_name_query = `SELECT country_name AS countryName
    AND TRIM(country_name) != '' 
    AND country_iso2_code = $1 
  LIMIT 1`;
+
+
+ export const delete_swift_code_query = `
+ DELETE FROM swift_codes WHERE swift_code = ?;
+`;
