@@ -36,5 +36,4 @@ export const country_name_query = `SELECT country_name AS countryName
 
 
  export const delete_swift_code_query = `
- DELETE FROM swift_codes WHERE swift_code = ?;
-`;
+ DELETE FROM swift_data WHERE swift_code = $1 `;
