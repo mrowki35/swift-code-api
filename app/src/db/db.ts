@@ -42,3 +42,19 @@ export const executeQuery = async (conn: PoolClient, sql: string, params: any[])
   } 
   
 };
+
+
+export const executeInsertQuery = async (
+  conn: PoolClient,
+  sql: string,
+  params: any[]
+): Promise<any[]> => {
+  try {
+    const result = await conn.query(sql, params);
+
+    return result.rows;
+  } catch (err) {
+    console.error(`executeInsertQuery Error: ${err}`);
+    throw err;
+  }
+};

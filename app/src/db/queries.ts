@@ -37,6 +37,5 @@ export const country_name_query =
  LIMIT 1`;
 
 export const insert_swift_code_query = `
-  INSERT INTO swift_codes (swift_code, bank_name, address, country_iso2, country_name, is_headquarter) 
-  VALUES (?, ?, ?, ?, ?, ?);
-`;
+  INSERT INTO swift_data (country_iso2_code, swift_code, name, address, country_name) 
+  VALUES ($1, $2, $3, $4, $5) `;
