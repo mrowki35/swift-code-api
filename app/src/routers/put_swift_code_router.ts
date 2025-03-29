@@ -22,15 +22,6 @@ put_swift_code_router.post(
       return;
     }
 
-    if(swiftCode.length !== 8 &&  isHeadquarter){
-      res.status(400).json({ message: "Invalid SWIFT code length. For headquarter it must be 8 characters. " });
-      return;
-    }
-    else if ( swiftCode.length !== 11 &&  !isHeadquarter) {
-      res.status(400).json({ message: "Invalid SWIFT code length. It must be 11 characters." });
-      return;
-    }
-
     if (countryISO2.length !== 2) {
       res.status(400).json({ message: "Invalid country ISO2 code. It must be exactly 2 characters." });
       return;
@@ -40,6 +31,17 @@ put_swift_code_router.post(
       res.status(400).json({ message: "Invalid isHeadquarter value. It must be a boolean (true/false)." });
       return;
     }
+
+    if(swiftCode.length !== 8 &&  isHeadquarter){
+      res.status(400).json({ message: "Invalid SWIFT code length. For headquarter it must be 8 characters. " });
+      return;
+    }
+    else if ( swiftCode.length !== 11 &&  !isHeadquarter) {
+      res.status(400).json({ message: "Invalid SWIFT code length. It must be 11 characters." });
+      return;
+    }
+
+  
     if (swiftCode.length === 8 && isHeadquarter) {
       swiftCode = `${swiftCode}XXX`; 
     }
