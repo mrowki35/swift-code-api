@@ -3,7 +3,6 @@ import express from "express";
 import banks_by_country_router from "../src/routers/banks_by_country_router";
 import db, { connectToDb, executeQuery, closeDbPool } from "../src/db/db";
 
-
 jest.mock("../src/db/db", () => ({
   connectToDb: jest.fn(),
   executeQuery: jest.fn(),

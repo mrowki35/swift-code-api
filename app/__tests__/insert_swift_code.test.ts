@@ -26,7 +26,7 @@ describe("POST /swift-codes", () => {
     const mockConn = { release: jest.fn() };
 
     (connectToDb as jest.Mock).mockResolvedValue(mockConn);
-    (executeQuery as jest.Mock).mockResolvedValue([]); 
+    (executeQuery as jest.Mock).mockResolvedValue([]);
     (executeInsertQuery as jest.Mock).mockResolvedValue({});
 
     const response = await request(app).post("/swift-codes").send({
@@ -39,7 +39,9 @@ describe("POST /swift-codes", () => {
     });
 
     expect(response.status).toBe(201);
-    expect(response.body).toEqual({ message: "SWIFT code entry added successfully" });
+    expect(response.body).toEqual({
+      message: "SWIFT code entry added successfully",
+    });
 
     expect(connectToDb).toHaveBeenCalledTimes(1);
     expect(executeQuery).toHaveBeenCalledTimes(1);
@@ -51,7 +53,9 @@ describe("POST /swift-codes", () => {
     const mockConn = { release: jest.fn() };
 
     (connectToDb as jest.Mock).mockResolvedValue(mockConn);
-    (executeQuery as jest.Mock).mockResolvedValue([{ swiftCode: "TESTUS33XXX" }]);
+    (executeQuery as jest.Mock).mockResolvedValue([
+      { swiftCode: "TESTUS33XXX" },
+    ]);
 
     const response = await request(app).post("/swift-codes").send({
       address: "123 Bank St",
@@ -98,7 +102,9 @@ describe("POST /swift-codes", () => {
     });
 
     expect(response.status).toBe(400);
-    expect(response.body).toEqual({ message: "Invalid country ISO2 code. It must be exactly 2 characters." });
+    expect(response.body).toEqual({
+      message: "Invalid country ISO2 code. It must be exactly 2 characters.",
+    });
   });
 
   it("should return 400 if isHeadquarter is not a boolean", async () => {
@@ -112,7 +118,10 @@ describe("POST /swift-codes", () => {
     });
 
     expect(response.status).toBe(400);
-    expect(response.body).toEqual({ message: "Invalid isHeadquarter value. It must be a boolean (true/false)." });
+    expect(response.body).toEqual({
+      message:
+        "Invalid isHeadquarter value. It must be a boolean (true/false).",
+    });
   });
 
   it("should return 400 if SWIFT code is 8 characters but not a headquarters", async () => {
@@ -126,7 +135,9 @@ describe("POST /swift-codes", () => {
     });
 
     expect(response.status).toBe(400);
-    expect(response.body).toEqual({ message: "Invalid SWIFT code length. It must be 11 characters." });
+    expect(response.body).toEqual({
+      message: "Invalid SWIFT code length. It must be 11 characters.",
+    });
   });
 
   it("should return 400 if SWIFT code is 11 characters but is a headquarters", async () => {
@@ -140,11 +151,16 @@ describe("POST /swift-codes", () => {
     });
 
     expect(response.status).toBe(400);
-    expect(response.body).toEqual({ message: "Invalid SWIFT code length. For headquarter it must be 8 characters. " });
+    expect(response.body).toEqual({
+      message:
+        "Invalid SWIFT code length. For headquarter it must be 8 characters. ",
+    });
   });
 
   it("should return 500 if DB connection fails", async () => {
-    (connectToDb as jest.Mock).mockRejectedValue(new Error("DB connection error"));
+    (connectToDb as jest.Mock).mockRejectedValue(
+      new Error("DB connection error"),
+    );
 
     const response = await request(app).post("/swift-codes").send({
       address: "123 Bank St",
@@ -168,7 +184,9 @@ describe("POST /swift-codes", () => {
 
     (connectToDb as jest.Mock).mockResolvedValue(mockConn);
     (executeQuery as jest.Mock).mockResolvedValue([]);
-    (executeInsertQuery as jest.Mock).mockRejectedValue(new Error("Query execution error"));
+    (executeInsertQuery as jest.Mock).mockRejectedValue(
+      new Error("Query execution error"),
+    );
 
     const response = await request(app).post("/swift-codes").send({
       address: "123 Bank St",

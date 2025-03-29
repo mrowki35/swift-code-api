@@ -29,11 +29,13 @@ describe("DELETE /swift-codes/:swiftCode", () => {
   it("should return 400 if SWIFT code is missing", async () => {
     const response = await request(app).delete("/swift-codes/");
 
-    expect(response.status).toBe(404); 
+    expect(response.status).toBe(404);
   });
 
   it("should return 500 if DB connection fails", async () => {
-    (connectToDb as jest.Mock).mockRejectedValue(new Error("DB connection error"));
+    (connectToDb as jest.Mock).mockRejectedValue(
+      new Error("DB connection error"),
+    );
 
     const response = await request(app).delete("/swift-codes/TEST123");
 
@@ -48,7 +50,9 @@ describe("DELETE /swift-codes/:swiftCode", () => {
     const mockConn = { release: jest.fn() };
 
     (connectToDb as jest.Mock).mockResolvedValue(mockConn);
-    (executeDeleteQuery as jest.Mock).mockRejectedValue(new Error("Query execution error"));
+    (executeDeleteQuery as jest.Mock).mockRejectedValue(
+      new Error("Query execution error"),
+    );
 
     const response = await request(app).delete("/swift-codes/TEST123");
 
@@ -85,7 +89,9 @@ describe("DELETE /swift-codes/:swiftCode", () => {
     const response = await request(app).delete("/swift-codes/VALID123");
 
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({ message: "SWIFT code deleted successfully" });
+    expect(response.body).toEqual({
+      message: "SWIFT code deleted successfully",
+    });
 
     expect(connectToDb).toHaveBeenCalledTimes(1);
     expect(executeDeleteQuery).toHaveBeenCalledTimes(1);

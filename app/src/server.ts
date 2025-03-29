@@ -4,7 +4,7 @@ import cors from "cors";
 import router_endpoints from "./routes/ApiRoutesEndpoints";
 
 const app = express();
-const PORT = 3000;
+const PORT = 8080;
 
 app.use(cors());
 app.use(express.json());
