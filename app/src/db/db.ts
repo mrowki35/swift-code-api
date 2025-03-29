@@ -46,11 +46,10 @@ export const executeQuery = async (
   }
 };
 
-
 export const executeInsertQuery = async (
   conn: PoolClient,
   sql: string,
-  params: any[]
+  params: any[],
 ): Promise<any[]> => {
   try {
     const result = await conn.query(sql, params);
@@ -65,10 +64,10 @@ export const executeDeleteQuery = async (
   conn: PoolClient,
   sql: string,
   params: any[],
-): Promise<any> => {  
+): Promise<any> => {
   try {
     const result = await conn.query(sql, params);
-    return result; 
+    return result;
   } catch (err) {
     console.error(`executeQuery Error: ${err}`);
     throw err;

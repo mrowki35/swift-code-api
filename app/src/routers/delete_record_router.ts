@@ -7,7 +7,7 @@ const delete_record_router: Router = express.Router();
 delete_record_router.delete(
   "/swift-codes/:swiftCode",
   async (req: Request, res: Response): Promise<void> => {
-    const  swiftCode  = req.params.swiftCode;
+    const swiftCode = req.params.swiftCode;
 
     if (!swiftCode) {
       res.status(400).json({ message: "SWIFT code is required" });
@@ -19,7 +19,9 @@ delete_record_router.delete(
     try {
       conn = await connectToDb();
 
-      const result = await executeDeleteQuery(conn, delete_swift_code_query, [swiftCode]);
+      const result = await executeDeleteQuery(conn, delete_swift_code_query, [
+        swiftCode,
+      ]);
 
       if (result.rowCount === 0) {
         res.status(404).json({ message: "SWIFT code not found" });
@@ -27,7 +29,6 @@ delete_record_router.delete(
       }
 
       res.status(200).json({ message: "SWIFT code deleted successfully" });
-
     } catch (error) {
       console.error("Error deleting SWIFT code:", error);
       res.status(500).json({ message: "Internal Server Error" });
@@ -37,7 +38,7 @@ delete_record_router.delete(
         console.debug(`DB connection released back to pool`);
       }
     }
-  }
+  },
 );
 
 export default delete_record_router;
