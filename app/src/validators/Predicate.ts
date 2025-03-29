@@ -1,1 +1,2 @@
-export const isEmptyIdResponsePredicate = (it: string) => it === undefined || it === ""
+export const isEmptyIdResponsePredicate = (it: string) =>
+  it === undefined || it === "";
