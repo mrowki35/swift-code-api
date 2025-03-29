@@ -34,6 +34,9 @@ export const country_name_query = `SELECT country_name AS countryName
    AND country_iso2_code = $1 
  LIMIT 1`;
 
+export const insert_swift_code_query = `
+  INSERT INTO swift_data (country_iso2_code, swift_code, name, address, country_name) 
+  VALUES ($1, $2, $3, $4, $5) `;
 
  export const delete_swift_code_query = `
  DELETE FROM swift_data WHERE swift_code = $1 `;
