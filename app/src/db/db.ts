@@ -2,7 +2,7 @@ import { Pool, PoolClient } from "pg";
 
 const pool = new Pool({
   user: "admin",
-  host: "localhost",
+  host: "postgres",
   database: "swift_db",
   password: "password",
   port: 5432,
