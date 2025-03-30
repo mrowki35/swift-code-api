@@ -24,10 +24,39 @@ The Swift Codes API provides bank information based on country codes. This API f
    http://localhost:8080/endpoint
    ```
 5. Requests examples:
-   ```
    
    ```
-6. Stopping the Services
+   curl -X DELETE "http://localhost:8080/v1/swift-codes/TEST1234" -H "Accept: application/json"
+   ```
+   ```
+   curl -X DELETE "http://localhost:8080/v1/swift-codes/" -H "Accept: application/json"
+   ```
+   ```
+   curl -X DELETE "http://localhost:8080/v1/swift-codes/ALBPPLPWXXX" -H "Accept: application/json"
+   ```
+   ```
+curl -X POST "http://localhost:8080/v1/swift-codes" -H "Content-Type: application/json" -d "{\"address\":\"123 Bank Street\",\"bankName\":\"Sample Bank\",\"countryISO2\":\"US\",\"countryName\":\"United States\",\"isHeadquarter\":true,\"swiftCode\":\"BANKUS33\"}"
+
+   ```
+
+```
+curl -X GET "http://localhost:8080/v1/swift-codes/country/" -H "Accept: application/json"
+```
+```
+curl -X GET "http://localhost:8080/v1/swift-codes/country/CL" -H "Accept: application/json"
+```
+```
+curl -X GET "http://localhost:8080/swift-codes/ALBPPLPWXXX" -H "Accept: application/json"
+```
+```
+curl -X GET "http://localhost:8080/swift-codes/ALBPPLPWCUS" -H "Accept: application/json"
+```
+
+
+
+
+   
+7. Stopping the Services
    ```
    docker-compose down
    ```
