@@ -57,7 +57,7 @@ The Swift Codes API provides bank information based on country codes. This API f
    
 7. Stopping the Services
    ```bash
-   docker-compose down
+   use ctrl+C in your terminal
    ```
    
 ## How to launch tests
