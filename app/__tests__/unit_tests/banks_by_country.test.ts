@@ -1,19 +1,19 @@
 import request from "supertest";
 import express from "express";
-import banks_by_country_router from "../src/routers/BanksByCountryRouter";
-import db, { connectToDb, executeQuery, closeDbPool } from "../src/db/db";
+import banks_by_country_router from "../../src/routers/BanksByCountryRouter";
+import db, { connectToDb, executeQuery, closeDbPool } from "../../src/db/db";
 
-jest.mock("../src/db/db", () => ({
+jest.mock("../../src/db/db", () => ({
   connectToDb: jest.fn(),
   executeQuery: jest.fn(),
   closeDbPool: jest.fn(),
 }));
 
-jest.mock("../src/responses/ResponseHandler", () => ({
+jest.mock("../../src/responses/ResponseHandler", () => ({
   handleResponse: jest.fn(),
 }));
 
-jest.mock("../src/validators/Predicate", () => ({
+jest.mock("../../src/validators/Predicate", () => ({
   isEmptyIdResponsePredicate: jest.fn(),
 }));
 

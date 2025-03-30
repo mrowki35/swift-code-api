@@ -1,9 +1,9 @@
 import request from "supertest";
 import express from "express";
-import delete_record_router from "../src/routers/DeleteRecordRouter";
-import db, { connectToDb, executeDeleteQuery, closeDbPool } from "../src/db/db";
+import delete_record_router from "../../src/routers/DeleteRecordRouter";
+import db, { connectToDb, executeDeleteQuery, closeDbPool } from "../../src/db/db";
 
-jest.mock("../src/db/db", () => ({
+jest.mock("../../src/db/db", () => ({
   connectToDb: jest.fn(),
   executeDeleteQuery: jest.fn(),
   closeDbPool: jest.fn(),

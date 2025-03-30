@@ -1,5 +1,5 @@
 import { Pool, PoolClient } from "pg";
-import { connectToDb, closeDbPool } from "../src/db/db";
+import { connectToDb, closeDbPool } from "../../src/db/db";
 
 jest.mock("pg", () => {
   const mockClient = {

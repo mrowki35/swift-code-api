@@ -1,16 +1,16 @@
 import request from "supertest";
 import express from "express";
-import swift_code_router from "../src/routers/GetBySwiftCodeRouter";
-import db, { connectToDb, executeQuery, closeDbPool } from "../src/db/db";
+import swift_code_router from "../../src/routers/GetBySwiftCodeRouter";
+import db, { connectToDb, executeQuery, closeDbPool } from "../../src/db/db";
 
 
-jest.mock("../src/db/db", () => ({
+jest.mock("../../src/db/db", () => ({
   connectToDb: jest.fn(),
   executeQuery: jest.fn(),
   closeDbPool: jest.fn(),
 }));
 
-jest.mock("../src/responses/ResponseHandler", () => ({
+jest.mock("../../src/responses/ResponseHandler", () => ({
   handleResponse: jest.fn(),
 }));
 

@@ -4,7 +4,10 @@ dotenv.config();
 
 const Config = {
   user: process.env.POSTGRES_USER || "admin",
-  host: process.env.DB_HOST || "postgres",
+  host:
+    process.env.ENVIRONMENT === "DEV"
+      ? "localhost"
+      : process.env.DB_HOST || "postgres",
   database: process.env.POSTGRES_DB || "swift_db",
   password: process.env.POSTGRES_PASSWORD || "password",
   db_port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 5432,
