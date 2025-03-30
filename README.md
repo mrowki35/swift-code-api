@@ -69,7 +69,18 @@ The Swift Codes API provides bank information based on country codes. This API f
    ```bash
    npm install
    ```
-3. Run the tests
+3. Add in .env file
+   ```
+    ENVIRONMENT=DEV
+   ```
+4. Build & start db container
+   ```bash
+   cd ../
+   cd db
+   docker build -t my-postgres-db .
+   docker run -d --name postgres_container -p 5432:5432 my-postgres-db
+   ```
+6. Run the tests
    ```bash
    npm test
    ```
