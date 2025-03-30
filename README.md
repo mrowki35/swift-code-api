@@ -27,10 +27,24 @@ The Swift Codes API provides bank information based on country codes. This API f
    ```
    
    ```
+6. Stopping the Services
+   ```
+   docker-compose down
+   ```
    
 ## How to launch tests
-
-
+1. Navigate to the app Folder
+   ```
+   cd app
+   ```
+2. Install Dependencies
+   ```
+   npm install
+   ```
+3. Run the tests
+   ```
+   npm test
+   ```
 
 ## Endpoints
 
@@ -87,6 +101,21 @@ Response Structure for branch swift code:
 }
 ```
 
+***Responses***
+```
+400 Bad Request → { "message": "Missing swiftCode parameter." }
+```
+```
+500 Internal Server Error → { "message": "Internal Server Error" }
+```
+```
+200 OK → Returns JSON with bank details & branches.
+```
+```
+204 OK -> empty response
+```
+
+
 ### Banks by country code 
 
 ```
@@ -113,7 +142,19 @@ countryISO2code (string): The two-letter ISO country code (e.g., US, DE, PL).
   ]
 }
 ```
-
+***Responses***
+```
+400 Bad Request → { "message": "Missing country ISO2 code parameter." }
+```
+```
+500 Internal Server Error → { "message": "Internal Server Error" }
+```
+```
+200 OK → Returns JSON with country and bank details.
+```
+```
+204 OK -> empty response
+```
 ### Add record
 
 ```
@@ -125,10 +166,11 @@ POST /v1/swift-codes:
 
 ***Path Parameter:***
 swiftCode: string consisting 11 characters
- 
-	Request Structure :
+
+Request Structure :
+
 ```
-	{
+{
     "address": string,
     "bankName": string,
     "countryISO2": string,
@@ -147,6 +189,29 @@ Response Structure:
 
 ```
 
+***Responses***
+
+```
+400 Bad Request → { "message": "Missing required fields" }
+```
+```
+400 Bad Request → { "message": "Invalid country ISO2 code. It must be exactly 2 characters." }
+```
+```
+400 Bad Request → { "message": "Invalid isHeadquarter value. It must be a boolean (true/false)." }
+```
+```
+400 Bad Request → { "message": "Invalid SWIFT code length. It must be 8 or 11 characters." }
+```
+```
+409 Conflict → { "message": "SWIFT code already exists" }
+```
+```
+500 Internal Server Error → { "message": "Internal Server Error" }
+```
+```
+201 Created → { "message": "SWIFT code entry added successfully" }
+```
 ### Delete record
 
 
@@ -163,4 +228,17 @@ Response Structure:
     "message": string,
 }
 ```
+***Responses***
 
+```
+400 Bad Request → { "message": "Missing swiftCode parameter." }
+```
+```
+404 Not Found → { "message": "SWIFT code not found" }
+```
+```
+500 Internal Server Error → { "message": "Internal Server Error" }
+```
+```
+200 OK → { "message": "SWIFT code deleted successfully" }
+```
