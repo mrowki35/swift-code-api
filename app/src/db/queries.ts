@@ -3,8 +3,8 @@ export const swift_codes_query = `SELECT address,
                                           UPPER(country_iso2_code) as countryISO2, 
                                           UPPER(country_name) as countryName, 
                                           CASE 
-                                              WHEN swift_code LIKE '%XXX' THEN 1 
-                                              ELSE 0 
+                                              WHEN swift_code LIKE '%XXX' THEN true 
+                                              ELSE false
                                           END AS isHeadquarter, 
                                           swift_code 
                                    FROM swift_data 
@@ -13,8 +13,8 @@ export const branches_swift_codes_query = `SELECT address,
                                    name as "bankName", 
                                    UPPER(country_iso2_code) as "countryISO2", 
                                    CASE 
-                                       WHEN swift_code LIKE '%XXX' THEN 1 
-                                       ELSE 0 
+                                       WHEN swift_code LIKE '%XXX' THEN true
+                                       ELSE false
                                    END AS "isHeadquarter", 
                                    swift_code as "swiftCode"
                             FROM swift_data 
@@ -22,8 +22,8 @@ export const branches_swift_codes_query = `SELECT address,
 
 export const banks_by_country_query = `SELECT address, name as "bankName", UPPER(country_iso2_code) as "countryISO2", 
     CASE 
-    WHEN swift_code LIKE '%XXX' THEN 1 
-    ELSE 0 
+    WHEN swift_code LIKE '%XXX' THEN true
+    ELSE false
     END AS "isHeadquarter", swift_code as "swiftCode" FROM swift_data 
     WHERE country_iso2_code = $1 `;
 
