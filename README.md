@@ -35,22 +35,21 @@ The Swift Codes API provides bank information based on country codes. This API f
    curl -X DELETE "http://localhost:8080/v1/swift-codes/ALBPPLPWXXX" -H "Accept: application/json"
    ```
    ```
-curl -X POST "http://localhost:8080/v1/swift-codes" -H "Content-Type: application/json" -d "{\"address\":\"123 Bank Street\",\"bankName\":\"Sample Bank\",\"countryISO2\":\"US\",\"countryName\":\"United States\",\"isHeadquarter\":true,\"swiftCode\":\"BANKUS33\"}"
-
+   curl -X POST "http://localhost:8080/v1/swift-codes" -H "Content-Type: application/json" -d "{\"address\":\"123 Bank Street\",\"bankName\":\"Sample                  Bank\",\"countryISO2\":\"US\",\"countryName\":\"United States\",\"isHeadquarter\":true,\"swiftCode\":\"BANKUS33\"}"
    ```
 
-```
-curl -X GET "http://localhost:8080/v1/swift-codes/country/" -H "Accept: application/json"
-```
-```
-curl -X GET "http://localhost:8080/v1/swift-codes/country/CL" -H "Accept: application/json"
-```
-```
-curl -X GET "http://localhost:8080/swift-codes/ALBPPLPWXXX" -H "Accept: application/json"
-```
-```
-curl -X GET "http://localhost:8080/swift-codes/ALBPPLPWCUS" -H "Accept: application/json"
-```
+   ```
+   curl -X GET "http://localhost:8080/v1/swift-codes/country/" -H "Accept: application/json"
+   ```
+   ```
+   curl -X GET "http://localhost:8080/v1/swift-codes/country/CL" -H "Accept: application/json"
+   ```
+   ```
+   curl -X GET "http://localhost:8080/swift-codes/ALBPPLPWXXX" -H "Accept: application/json"
+   ```
+   ```
+   curl -X GET "http://localhost:8080/swift-codes/ALBPPLPWCUS" -H "Accept: application/json"
+   ```
 
 
 
