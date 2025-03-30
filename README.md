@@ -6,48 +6,48 @@ The Swift Codes API provides bank information based on country codes. This API f
 ## How to run
 
 1. Clone the Repository
-   ```
+   ```bash
    git clone <repository_url>
    cd <repository_folder>
    ```
 2. Ensure Docker and Docker Compose are Installed
-   ```
+   ```bash
    docker --version
    docker-compose --version
    ```
 3. Build using docker-compose
-   ```
+   ```bash
    docker-compose up --build
    ```
 4. Access the Application on Localhost
-   ```
+   ```bash
    http://localhost:8080/endpoint
    ```
 5. Requests examples:
    
-   ```
+   ```bash
    curl -X DELETE "http://localhost:8080/v1/swift-codes/TEST1234" -H "Accept: application/json"
    ```
-   ```
+   ```bash
    curl -X DELETE "http://localhost:8080/v1/swift-codes/" -H "Accept: application/json"
    ```
-   ```
+   ```bash
    curl -X DELETE "http://localhost:8080/v1/swift-codes/ALBPPLPWXXX" -H "Accept: application/json"
    ```
-   ```
+   ```bash
    curl -X POST "http://localhost:8080/v1/swift-codes" -H "Content-Type: application/json" -d "{\"address\":\"123 Bank Street\",\"bankName\":\"Sample                  Bank\",\"countryISO2\":\"US\",\"countryName\":\"United States\",\"isHeadquarter\":true,\"swiftCode\":\"BANKUS33\"}"
    ```
 
-   ```
+   ```bash
    curl -X GET "http://localhost:8080/v1/swift-codes/country/" -H "Accept: application/json"
    ```
-   ```
+   ```bash
    curl -X GET "http://localhost:8080/v1/swift-codes/country/CL" -H "Accept: application/json"
    ```
-   ```
+   ```bash
    curl -X GET "http://localhost:8080/swift-codes/ALBPPLPWXXX" -H "Accept: application/json"
    ```
-   ```
+   ```bash
    curl -X GET "http://localhost:8080/swift-codes/ALBPPLPWCUS" -H "Accept: application/json"
    ```
 
@@ -56,21 +56,21 @@ The Swift Codes API provides bank information based on country codes. This API f
 
    
 7. Stopping the Services
-   ```
+   ```bash
    docker-compose down
    ```
    
 ## How to launch tests
 1. Navigate to the app Folder
-   ```
+   ```bash
    cd app
    ```
 2. Install Dependencies
-   ```
+   ```bash
    npm install
    ```
 3. Run the tests
-   ```
+   ```bash
    npm test
    ```
 
