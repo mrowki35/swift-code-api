@@ -13,7 +13,7 @@ const pool = new Pool({
 });
 
 pool.on("connect", () => {
-  console.debug("Connected to PostgreSQL)");
+  console.debug("Connected to PostgreSQL");
 });
 
 export const connectToDb = async (): Promise<PoolClient> => {

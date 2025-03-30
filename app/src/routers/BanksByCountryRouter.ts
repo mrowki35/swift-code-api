@@ -7,11 +7,25 @@ import { BanksByCountryResponse } from "../responses/BanksByCountryResponse";
 
 const banks_by_country_router: Router = express.Router();
 
+
+banks_by_country_router.get(
+  "/swift-codes/country/",
+  (req: Request, res: Response): void => {
+     res.status(400).json({ error: "Missing country ISO2 code parameter." });
+     return;
+  }
+);
+
 banks_by_country_router.get(
   "/swift-codes/country/:countryISO2code",
   async (req: Request, res: Response): Promise<void> => {
     const countryISO2code = req.params.countryISO2code;
     let conn: any = null;
+
+    if (!countryISO2code) {
+      res.status(400).json({ error: "Country ISO2 code is required" });
+      return;
+    }
 
     try {
       conn = await connectToDb();
