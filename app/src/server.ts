@@ -1,10 +1,10 @@
 import express from "express";
-
+import Config from "./config/Config";
 import cors from "cors";
 import router_endpoints from "./routes/ApiRoutesEndpoints";
 
 const app = express();
-const PORT = 8080;
+const PORT = Config.app_port;
 
 app.use(cors());
 app.use(express.json());

@@ -1,6 +1,6 @@
 import request from "supertest";
 import express from "express";
-import delete_record_router from "../src/routers/delete_record_router";
+import delete_record_router from "../src/routers/DeleteRecordRouter";
 import db, { connectToDb, executeDeleteQuery, closeDbPool } from "../src/db/db";
 
 jest.mock("../src/db/db", () => ({
@@ -29,7 +29,7 @@ describe("DELETE /swift-codes/:swiftCode", () => {
   it("should return 400 if SWIFT code is missing", async () => {
     const response = await request(app).delete("/swift-codes/");
 
-    expect(response.status).toBe(404);
+    expect(response.status).toBe(400);
   });
 
   it("should return 500 if DB connection fails", async () => {

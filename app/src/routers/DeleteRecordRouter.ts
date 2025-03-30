@@ -2,17 +2,21 @@ import express, { Request, Response, Router } from "express";
 import { connectToDb, executeDeleteQuery } from "../db/db";
 import { delete_swift_code_query } from "../db/queries";
 
+
 const delete_record_router: Router = express.Router();
+
+delete_record_router.delete(
+  "/swift-codes/",
+  (req: Request, res: Response): void => {
+     res.status(400).json({ message: "Missing swiftCode parameter." });
+     return;
+  }
+);
 
 delete_record_router.delete(
   "/swift-codes/:swiftCode",
   async (req: Request, res: Response): Promise<void> => {
     const swiftCode = req.params.swiftCode;
-
-    if (!swiftCode) {
-      res.status(400).json({ message: "SWIFT code is required" });
-      return;
-    }
 
     let conn: any = null;
 

@@ -1,6 +1,6 @@
 import request from "supertest";
 import express from "express";
-import put_swift_code_router from "../src/routers/put_swift_code_router";
+import put_swift_code_router from "../src/routers/PostSwiftCodeRouter";
 import { connectToDb, executeInsertQuery, executeQuery } from "../src/db/db";
 
 jest.mock("../src/db/db", () => ({

@@ -1,18 +1,19 @@
 import { Pool, PoolClient } from "pg";
+import Config  from "../config/Config";
 
 const pool = new Pool({
-  user: "admin",
-  host: "postgres",
-  database: "swift_db",
-  password: "password",
-  port: 5432,
+  user: Config.user,
+  host: Config.host,
+  database: Config.database,
+  password: Config.password,
+  port: Config.db_port,
   max: 10,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
 });
 
 pool.on("connect", () => {
-  console.debug("Connected to PostgreSQL)");
+  console.debug("Connected to PostgreSQL");
 });
 
 export const connectToDb = async (): Promise<PoolClient> => {

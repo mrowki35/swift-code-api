@@ -1,6 +1,6 @@
 import request from "supertest";
 import express from "express";
-import banks_by_country_router from "../src/routers/banks_by_country_router";
+import banks_by_country_router from "../src/routers/BanksByCountryRouter";
 import db, { connectToDb, executeQuery, closeDbPool } from "../src/db/db";
 
 jest.mock("../src/db/db", () => ({
@@ -34,6 +34,13 @@ describe("GET /swift-codes/country/:countryISO2code", () => {
     await closeDbPool();
   });
 
+  it("should return 400 if iso coubtry code is missing", async () => {
+      const response = await request(app).get("/swift-codes/country/");
+  
+      expect(response.status).toBe(400);
+  });
+  
+
   it("should return a 500 error if DB connection fails", async () => {
     (connectToDb as jest.Mock).mockRejectedValue(
       new Error("DB connection error"),
@@ -42,7 +49,7 @@ describe("GET /swift-codes/country/:countryISO2code", () => {
     const response = await request(app).get("/swift-codes/country/US");
 
     expect(response.status).toBe(500);
-    expect(response.body).toEqual({ error: "Internal Server Error" });
+    expect(response.body).toEqual({ message: "Internal Server Error" });
 
     expect(connectToDb).toHaveBeenCalledTimes(1);
     expect(executeQuery).not.toHaveBeenCalled();
@@ -59,7 +66,7 @@ describe("GET /swift-codes/country/:countryISO2code", () => {
     const response = await request(app).get("/swift-codes/country/US");
 
     expect(response.status).toBe(500);
-    expect(response.body).toEqual({ error: "Internal Server Error" });
+    expect(response.body).toEqual({ message: "Internal Server Error" });
 
     expect(connectToDb).toHaveBeenCalledTimes(1);
     expect(executeQuery).toHaveBeenCalledTimes(1);
