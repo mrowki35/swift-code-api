@@ -49,7 +49,7 @@ describe("GET /swift-codes/country/:countryISO2code", () => {
     const response = await request(app).get("/swift-codes/country/US");
 
     expect(response.status).toBe(500);
-    expect(response.body).toEqual({ error: "Internal Server Error" });
+    expect(response.body).toEqual({ message: "Internal Server Error" });
 
     expect(connectToDb).toHaveBeenCalledTimes(1);
     expect(executeQuery).not.toHaveBeenCalled();
@@ -66,7 +66,7 @@ describe("GET /swift-codes/country/:countryISO2code", () => {
     const response = await request(app).get("/swift-codes/country/US");
 
     expect(response.status).toBe(500);
-    expect(response.body).toEqual({ error: "Internal Server Error" });
+    expect(response.body).toEqual({ message: "Internal Server Error" });
 
     expect(connectToDb).toHaveBeenCalledTimes(1);
     expect(executeQuery).toHaveBeenCalledTimes(1);

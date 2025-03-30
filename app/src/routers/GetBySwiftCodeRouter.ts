@@ -11,7 +11,7 @@ const swift_code_router: Router = express.Router();
 swift_code_router.get(
   "/swift-codes/",
   (req: Request, res: Response): void => {
-     res.status(400).json({ error: "Missing swiftCode parameter." });
+     res.status(400).json({ message: "Missing swiftCode parameter." });
      return;
   }
 );
@@ -21,12 +21,6 @@ swift_code_router.get(
   async (req: Request, res: Response): Promise<void> => {
     const swiftCode = req.params.swiftCode;
     let conn: any = null;
-
-    console.debug(swiftCode)
-    if (!swiftCode) {
-      res.status(400).json({ message: "SWIFT code is required" });
-      return;
-    }
 
     try {
       conn = await connectToDb();
@@ -67,7 +61,7 @@ swift_code_router.get(
         );
       }
     } catch (error) {
-      res.status(500).json({ error: "Internal Server Error" });
+      res.status(500).json({ message: "Internal Server Error" });
       console.debug(error);
     } finally {
       if (conn) {

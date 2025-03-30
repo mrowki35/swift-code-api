@@ -11,7 +11,7 @@ const banks_by_country_router: Router = express.Router();
 banks_by_country_router.get(
   "/swift-codes/country/",
   (req: Request, res: Response): void => {
-     res.status(400).json({ error: "Missing country ISO2 code parameter." });
+     res.status(400).json({ message: "Missing country ISO2 code parameter." });
      return;
   }
 );
@@ -23,7 +23,7 @@ banks_by_country_router.get(
     let conn: any = null;
 
     if (!countryISO2code) {
-      res.status(400).json({ error: "Country ISO2 code is required" });
+      res.status(400).json({ message: "Country ISO2 code is required" });
       return;
     }
 
@@ -47,7 +47,7 @@ banks_by_country_router.get(
         isEmptyIdResponsePredicate(countryName[0]),
       );
     } catch (error) {
-      res.status(500).json({ error: "Internal Server Error" });
+      res.status(500).json({ message: "Internal Server Error" });
       console.debug(error);
     } finally {
       if (conn) {

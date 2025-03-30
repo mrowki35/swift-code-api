@@ -35,7 +35,7 @@ describe("Test Swift Code Router", () => {
     it("should return 400 if no swiftCode parameter is provided", async () => {
       const response = await request(app).get("/swift-codes/");
       expect(response.status).toBe(400);
-      expect(response.body.error).toBe("Missing swiftCode parameter.");
+      expect(response.body.message).toBe("Missing swiftCode parameter.");
     });
   });
 
@@ -48,7 +48,7 @@ describe("Test Swift Code Router", () => {
       const response = await request(app).get("/swift-codes/123456");
 
       expect(response.status).toBe(500);
-      expect(response.body).toEqual({ error: "Internal Server Error" });
+      expect(response.body).toEqual({ message: "Internal Server Error" });
 
       expect(connectToDb).toHaveBeenCalledTimes(1);
       expect(executeQuery).not.toHaveBeenCalled();
@@ -65,7 +65,7 @@ describe("Test Swift Code Router", () => {
       const response = await request(app).get("/swift-codes/123456");
 
       expect(response.status).toBe(500);
-      expect(response.body).toEqual({ error: "Internal Server Error" });
+      expect(response.body).toEqual({ message: "Internal Server Error" });
 
       expect(connectToDb).toHaveBeenCalledTimes(1);
       expect(executeQuery).toHaveBeenCalledTimes(1);
